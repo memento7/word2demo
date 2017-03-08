@@ -1,0 +1,38 @@
+#content {
+    width: 100%;
+}
+
+.row {
+    padding: 32px;
+    border-bottom: 2px solid #eee;
+}
+
+#query-box {
+}
+
+#words{
+}
+
+.word {
+    padding: 8px;
+    display: inline-block
+}
+
+.word.positive {
+    border: 2px solid skyblue;
+}
+.word.negative {
+
+    border: 2px solid orangered;
+}
+.result {
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+    border: 4px solid #eee;
+    padding: 8px;
+    margin: 8px;
+}
+.result h3 {
+    margin-top: 8px;
+}

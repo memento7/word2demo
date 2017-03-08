@@ -1,0 +1,47 @@
+{% extends "default.html" %}
+{% block body %}
+
+<div class="row" id="header-box">
+    <div class="col-md-6 col-md-offset-3 text-center">
+        <h2>Word2Demo</h2>
+        <p>이 홈페이지는 Word2Vec의 시험용 모델을 테스트해보는 홈페이지입니다.</p>
+    </div>
+</div>
+
+<div class="row" id="query-box">
+    <form class="form-horizontal" action="/query" method="POST">
+        <div class="col-md-6 col-md-offset-3">
+            <input class="form-control" name="query" placeholder="ex) 한국 - 서울 + 도쿄">
+        </div>
+    </form>
+</div>
+
+<div class="row" id="words-box">
+    <div class="col-md-6 col-md-offset-3" id="words">
+        {% for pos in positive %}
+            <div class="word positive">
+                {{ pos }}
+            </div>
+        {% endfor %}
+
+        {% for neg in negative %}
+            <div class="word negative">
+                {{ neg }}
+            </div>
+        {% endfor %}
+
+        <hr>
+
+        <div id="results">
+            {% for result in results %}
+                <div class="result" data-acc="{{'%0.6f'| format(result[1]|float)}}">
+                    <h3>{{ result[0] }}</h3>
+                    <small>{{'%0.6f'| format(result[1]|float)}}</small>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
