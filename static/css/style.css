@@ -27,7 +27,7 @@
 }
 .result {
     display: inline-block;
-    width: 100px;
+    min-width: 100px;
     height: 80px;
     border: 4px solid #eee;
     padding: 8px;

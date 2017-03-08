@@ -5,14 +5,18 @@ app = Flask(__name__)
 
 model = Word2Vec.load('./data/model')
 def getResult(pos, neg):
-    return model.most_similar(positive=pos, negative=neg)[:5]
+    try:
+        return model.most_similar(positive=pos, negative=neg)[:5]
+    except:
+        return []
 
 @app.route('/')
 def home():
+    pos = []
+    neg = []
+    res = []
     query = request.args.get('query')
     if query:
-        pos = []
-        neg = []
         for p in query.split('+'):
             d = p.split('-')
             if len(d) > 1: neg.append(d[1].strip())
@@ -27,4 +31,4 @@ def query():
     return redirect(url_for('home', query=query))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=False)
