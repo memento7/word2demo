@@ -15,14 +15,17 @@ def home():
     pos = []
     neg = []
     res = []
+    non = []
     query = request.args.get('query')
     if query:
         for p in query.split('+'):
             d = p.split('-')
             if len(d) > 1: neg.append(d[1].strip())
             pos.append(d[0].strip())
+        pos = list(filter(lambda x: x in model.wv.vocab, pos))
+        neg = list(filter(lambda x: x in model.wv.vocab, neg))
+        print (pos, neg)
         res = getResult(pos, neg)
-
     return render_template('home.html', positive=pos, negative=neg, results=res)
 
 @app.route('/query', methods=['POST'])
